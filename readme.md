@@ -1,1 +1,1 @@
-python script.py source.md target.md
+python scripts.py source.md target.md
