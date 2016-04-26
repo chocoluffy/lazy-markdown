@@ -102,13 +102,13 @@ def replace_img(source_md, target_md, conn):
         if db_data:
             print("[%s] >>> url: %s" % (os.path.split(source_img)[1], db_data[1]))
             url = db_data[1]
-            md_content = md_content.replace(image[0], image[0].replace(image[1], str(url)))
+            md_content = md_content.replace(image[0], "<div style='text-align:center' markdown='1'>" + image[0].replace(image[1], str(url)) + "</div>")
 
         elif os.path.isfile(source_img):
             compressed_img = os.path.join(os.path.split(source_img)[0], 'cp_' + os.path.split(source_img)[1])
             compress(source_img, compressed_img)
             url = upload(compressed_img)
-            md_content = md_content.replace(image[0], image[0].replace(image[1], str(url)))
+            md_content = md_content.replace(image[0], "<div style='text-align:center' markdown='1'>" + image[0].replace(image[1], str(url)) + "</div>")
             write_db(conn, calc_hash(source_img), url)
 
         else:
